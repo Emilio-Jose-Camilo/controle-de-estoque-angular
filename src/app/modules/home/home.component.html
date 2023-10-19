@@ -7,7 +7,7 @@
       text-align-center"
     >
       <!--LOGIN-->
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
         <p-card
           styleClass="mt-10"
           header="Login"
@@ -24,6 +24,7 @@
               type="email"
               pInputText
               placeholder="Email"
+              formControlName="email"
             />
           </div>
           <div
@@ -33,11 +34,11 @@
             text-align-center"
             mt-3
           >
-            <input type="password" pInputText placeholder="Senha" />
+            <input type="password" pInputText placeholder="Senha" formControlName="password"/>
           </div>
 
           <div class="card flex justify-content-center mt-3">
-            <button type="submit" pButton pRipple label="Login"></button>
+            <button type="submit" pButton pRipple label="Login" [disabled]="!this.loginForm.valid"></button>
           </div>
           <span
             class="flex
@@ -54,7 +55,7 @@
         </p-card>
       </form>
       <!--SIGNUP-->
-      <form>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmitsignupForm()">
         <p-card
           styleClass="mt-10"
           header="Criar conta"
@@ -67,7 +68,7 @@
             align-content-center
             text-align-center"
           >
-            <input type="text" pInputText placeholder="nome" />
+            <input type="text" pInputText placeholder="nome" formControlName="name"/>
           </div>
           <div
             class="flex
@@ -75,7 +76,7 @@
             align-content-center
             text-align-center"
           >
-            <input type="email" pInputText placeholder="Email" />
+            <input type="email" pInputText placeholder="Email" formControlName="email"/>
           </div>
           <div
             class="flex
@@ -84,7 +85,7 @@
             text-align-center"
             mt-3
           >
-            <input type="password" pInputText placeholder="Senha" />
+            <input type="password" pInputText placeholder="Senha" formControlName="password"/>
           </div>
 
           <div
@@ -97,6 +98,7 @@
               pButton
               pRipple
               label="Criar conta"
+              [disabled]="!this.signupForm.valid"
             ></button>
           </div>
           <span
