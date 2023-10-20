@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SisnupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequest';
+import { SignupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequest';
 import { SignupUserResponse } from 'src/app/models/interfaces/user/SignupUserResponse';
 import { AuthResponse } from 'src/app/models/interfaces/user/auth/AuthResponse';
-import { AuthResquest } from 'src/app/models/interfaces/user/auth/authRequest';
+import { AuthResquest } from 'src/app/models/interfaces/user/auth/AuthRequest';
 import { environments } from 'src/environments/environments';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  signupUser(requestDatas: SisnupUserRequest): Observable<SignupUserResponse>{
+  signupUser(requestDatas: SignupUserRequest): Observable<SignupUserResponse>{
     return this.http.post<SignupUserResponse>(`${this.API_URL}/user`,
     requestDatas
 
