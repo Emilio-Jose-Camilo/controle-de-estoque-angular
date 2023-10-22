@@ -41,7 +41,7 @@ export class HomeComponent {
         .subscribe({
           next: (response) => {
             if(response) {
-              this.cookieService.set('User_INFO', response?.token);
+              this.cookieService.set('USER_INFO', response?.token);
 
               this.loginForm.reset();
               this.router.navigate(['/dashboard']);
