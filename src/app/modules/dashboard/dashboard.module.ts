@@ -15,6 +15,7 @@ import { ChartModule } from 'primeng/chart';
 
 import { DASHBOARD_ROUTES } from './dashboard.routing';
 import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -32,7 +33,9 @@ import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.com
     ToolbarModule,
     CardModule,
     ToastModule,
-    ChartModule
+    ChartModule,
+    //shared module
+    SharedModule
   ],
 
   providers: [MessageService, CookieService]

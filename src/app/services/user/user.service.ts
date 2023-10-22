@@ -33,7 +33,7 @@ export class UserService {
   }
 
   isLoggedIn(): boolean {
-  //verificar se o usuário pussui um token ou cookie
+  //verificar se o usuário pussui um token ou cookie 
   const JWT_TOKEN = this.cookie.get('USER_INFO');
   return JWT_TOKEN ? true : false;
   }
