@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 import { SignupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequest';
 import { AuthResquest } from 'src/app/models/interfaces/user/auth/AuthRequest';
 import { UserService } from 'src/app/services/user/user.service';
@@ -12,7 +13,8 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy{
+  private destroy$ = new Subject<void>();
   loginCard = true;
 
   loginForm = this.formBuilder.group({
@@ -38,6 +40,9 @@ export class HomeComponent {
   onSubmitLoginForm(): void {
     if(this.loginForm.value && this.loginForm.valid) {
       this.userService.authUser(this.loginForm.value as AuthResquest)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
         .subscribe({
           next: (response) => {
             if(response) {
@@ -73,6 +78,9 @@ export class HomeComponent {
     if(this.signupForm.value && this.signupForm.valid) {
       this.userService
         .signupUser(this.signupForm.value as SignupUserRequest)
+        .pipe(
+          takeUntil(this.destroy$)
+        )
         .subscribe({
           next: (response) => {
             if(response) {
@@ -99,5 +107,9 @@ export class HomeComponent {
         })
     }
  // console.log('Dados do formulário de Criação de conta', this.signupForm.value)
+  }
+  ngOnDestroy(): void {
+      this.destroy$.next();
+      this.destroy$.complete();
   }
 }
