@@ -22,12 +22,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsHomeComponent } from './page/products-home/products-home.component';
 import { PRODUCTS_ROUTES } from './products.routing';
 import { ProductTableComponent } from './components/product-table/product-table.component';
+import { ProductFormComponent } from './components/product-table/product-form/product-form.component';
 
 
 @NgModule({
   declarations: [
     ProductsHomeComponent,
-    ProductTableComponent
+    ProductTableComponent,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,
