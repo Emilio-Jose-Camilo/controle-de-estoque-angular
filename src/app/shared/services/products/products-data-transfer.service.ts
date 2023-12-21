@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, take } from 'rxjs';
-import { GetAllProductsResponse } from 'src/app/models/interfaces/Products/response/GetAllProductsResponse';
+import { GetAllProductsResponse } from 'src/app/models/interfaces/Products/response/GetAllProductsResponse'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsDataTransferService {
+
   public productsDataEmitter$ =
     new BehaviorSubject<Array<GetAllProductsResponse> | null>(null);
   public productsDatas: Array<GetAllProductsResponse> = [];
@@ -17,6 +18,7 @@ export class ProductsDataTransferService {
       this.getProductsDatas();
     }
   }
+  
   getProductsDatas() {
     this.productsDataEmitter$
       .pipe(
