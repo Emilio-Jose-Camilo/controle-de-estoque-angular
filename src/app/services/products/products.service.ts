@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, map } from 'rxjs';
+import { EditProductRequest } from 'src/app/models/interfaces/Products/request/EditProductRequest';
 import { CreateProductRequest } from 'src/app/models/interfaces/Products/request/createProductRequest';
 import { DeleteProductResponse } from 'src/app/models/interfaces/Products/response/DeleteProductResponse';
 import { GetAllProductsResponse } from 'src/app/models/interfaces/Products/response/GetAllProductsResponse';
@@ -39,14 +40,23 @@ export class ProductsService {
         {
           ...this.httpOptions, params: {
             product_id: product_id,
-          }
+          },
         }
-    )
+    );
   }
   // Método para criar um novo produto
   createProduct(requestDatas: CreateProductRequest): Observable<CreateProductResponse> {
     return this.http.post<CreateProductResponse>(
       `${this.API_URL}/product`, requestDatas, this.httpOptions
-      )
+      );
+  }
+
+  /**Método para editar produto*/
+  editProduct(requestDatas: EditProductRequest): Observable<void> {
+    return this.http.put<void>(
+      `${this.API_URL}/product/edit`,
+      requestDatas, 
+      this.httpOptions
+    );
   }
 }
