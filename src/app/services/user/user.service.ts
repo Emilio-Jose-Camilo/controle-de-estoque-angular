@@ -20,21 +20,22 @@ export class UserService {
     private cookie: CookieService
   ) { }
 
-  signupUser(requestDatas: SignupUserRequest): Observable<SignupUserResponse>{
+  //Método de criar usuário
+  signupUser(requestDatas: SignupUserRequest): Observable<SignupUserResponse> {
     return this.http.post<SignupUserResponse>(`${this.API_URL}/user`,
-    requestDatas
-
+      requestDatas
     );
   }
 
+  //Método para autenticar o usuário
   authUser(requestDatas: AuthResquest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.API_URL}/auth`, requestDatas)
 
   }
 
   isLoggedIn(): boolean {
-  //verificar se o usuário pussui um token ou cookie 
-  const JWT_TOKEN = this.cookie.get('USER_INFO');
-  return JWT_TOKEN ? true : false;
+    //verifica se o usuário pussui um token ou cookie 
+    const JWT_TOKEN = this.cookie.get('USER_INFO');
+    return JWT_TOKEN ? true : false;
   }
 }
