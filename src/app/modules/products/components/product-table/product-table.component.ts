@@ -16,7 +16,7 @@ export class ProductTableComponent {
   @Output()deleteProductEvent = new EventEmitter<DeleteProductAction>();
 
   public productSelected!: GetAllProductsResponse;
-  public addProductEvent = ProductEvent.ADD_PRODUCT_EVENT;
+  public addProductEvent = ProductEvent.ADD_PRODUCT_EVENT 
   public editProductEvent = ProductEvent.EDIT_PRODUCT_EVENT;
 
   handleProductEvent(action: string, id?: string): void {

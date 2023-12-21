@@ -10,11 +10,13 @@ import { CookieService } from 'ngx-cookie-service';
 export class ToolbarNavigationComponent {
 
 
-  constructor(private cookie: CookieService,
-    private router: Router) {}
+  constructor(
+    private cookie: CookieService,
+    private router: Router
+  ) {}
 
-    handleLogout(): void {
-      this.cookie.delete('USER_INFO');
-      void this.router.navigate(['/home']);
-    }
+   handleLogout(): void {
+    this.cookie.delete('USER_INFO');
+    void this.router.navigate(['/home']);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -11,21 +11,22 @@ import { UserService } from 'src/app/services/user/user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+
 })
 export class HomeComponent implements OnDestroy{
   private destroy$ = new Subject<void>();
   loginCard = true;
 
   loginForm = this.formBuilder.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required]
+    email: ['',[ Validators.required, Validators.email]],
+    password: ['',[ Validators.required]]
   });
 
   signupForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required]
+    name: ['',[ Validators.required]],
+    email: ['',[ Validators.required, Validators.email]],
+    password: ['',[ Validators.required]]
 
   })
 
